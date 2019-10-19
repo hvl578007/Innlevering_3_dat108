@@ -47,7 +47,7 @@ public class Logginn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //sjekk input...!? evt berre javascript
+        //skal ikkje sjekke om det er valid input her... berre om det var gyldig legitimasjon
 
         if(!erGyldigLegitimasjon(request, deltakarEAO)) {
 
