@@ -14,7 +14,7 @@
 	<h2>Deltagerliste</h2>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
-			<th>Kjønn</th>
+			<th>KjÃ¸nn</th>
 			<th align="left">Navn</th>
 			<th align="left">Mobil</th>
 		</tr>

@@ -8,10 +8,10 @@
 <!-- Fra https://purecss.io/ -->
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-<title>Påmelding</title>
+<title>PÃ¥melding</title>
 </head>
 <body>
-	<h2>Påmelding</h2>
+	<h2>PÃ¥melding</h2>
 	<form method="post" class="pure-form pure-form-aligned">
 		<fieldset>
 			<div class="pure-control-group">
@@ -38,19 +38,19 @@
 				<label for="passordRepetert">Passord repetert:</label> <input
 					type="password" name="passordRepetert"
 					value="" /> 
-					<font color="red">Passordene må være like</font>
+					<font color="red">Passordene mÃ¥ vÃ¦re like</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="kjonn">Kjænn:</label> <input type="radio" name="kjonn"
+				<label for="kjonn">KjÃ¸nn:</label> <input type="radio" name="kjonn"
 					value="mann"
 					 />mann
 				<input type="radio" name="kjonn" value="kvinne"
 					 />kvinne
-				<font color="red">Du må oppgi kjønn</font>
+				<font color="red">Du mÃ¥ oppgi kjÃ¸nn</font>
 			</div>
 			<div class="pure-controls">
 				<button type="submit" class="pure-button pure-button-primary">Meld
-					meg på</button>
+					meg pÃ¥</button>
 			</div>
 		</fieldset>
 	</form>

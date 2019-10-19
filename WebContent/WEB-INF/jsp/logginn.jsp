@@ -12,10 +12,13 @@
 </head>
 <body>
 	<h2>Logg inn</h2>
-	<p>Det er kun registrerte deltagere som før se deltagerlisten.</p>
+	<p>Det er kun registrerte deltagere som fÃ¥r se deltagerlisten.</p>
+
+	<!-- feilmelding her: bytt ut med <c:out etc...>-->
 	<p>
 		<font color="red">Ugyldig brukernavn og/eller passord</font>
 	</p>
+
 	<form method="post" class="pure-form pure-form-aligned">
 		<fieldset>
 			<div class="pure-control-group">
