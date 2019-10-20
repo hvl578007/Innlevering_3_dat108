@@ -1,9 +1,15 @@
 ﻿package no.hvl.dat108.util;
 
+import static no.hvl.dat108.util.FeilmeldingUtil.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * ValideringUtil
  * 
- * Dette er enkel validering på om brukarinput er gyldig og slikt, ikkje om det er rett innloggingsinfo etc.
+ * Dette er enkel validering på om brukarinput er gyldig og slikt, ikkje om det
+ * er rett innloggingsinfo etc.
  */
 public class ValideringUtil {
 
@@ -28,6 +34,42 @@ public class ValideringUtil {
 
         }
         return false;
+    }
+
+    public static boolean erGyldigSkjemaInput(HttpServletRequest request, String fornamn, String etternamn, String mobilnr, String passord, String passordRepetert, String kjoenn) {
+        boolean altGyldig = true;
+
+        if (!erGyldigFornamn(fornamn)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_FN, FEIL_FORNAMN);
+            altGyldig = false;
+        }
+        
+        if (!erGyldigEtternamn(etternamn)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_EN, FEIL_ETTERNAMN);
+            altGyldig = false;
+        }
+        
+        if (!erGyldigMobilnummer(mobilnr)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_MOB, FEIL_MOBILNR);
+            altGyldig = false;
+        }
+        
+        if (!erGyldigPassord(passord)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_PASS, FEIL_PASSORD);
+            altGyldig = false;
+        }
+        
+        if (!erGyldigPassordRepetert(passord, passordRepetert)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_PASSREP, FEIL_PASSORD_REP);
+            altGyldig = false;
+        }
+
+        if (!erGyldigKjoenn(kjoenn)) {
+            settFeilmeldingSesjon(request, FEIL_TYPE_KJOENN, FEIL_KJOENN);
+            altGyldig = false;
+        }
+
+        return altGyldig;
     }
 
     public static boolean erGyldigEtternamn(String etternamn) {
@@ -69,5 +111,13 @@ public class ValideringUtil {
                 passord.matches("^.*\\d+.*$");
         }
         return false;
+    }
+
+    public static boolean erGyldigPassordRepetert(String passord, String passordRepetert) {
+        return passord != null && passordRepetert != null && passord.equals(passordRepetert);
+    }
+
+    public static boolean erGyldigKjoenn(String kjoenn) {
+        return kjoenn != null && (kjoenn.equals("mann") || kjoenn.equals("kvinne"));
     }
 }

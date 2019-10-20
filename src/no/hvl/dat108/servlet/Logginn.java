@@ -4,6 +4,7 @@ import static no.hvl.dat108.util.URLListe.DELTAKARLISTE_URL;
 import static no.hvl.dat108.util.URLListe.LOGGINN_JSP;
 import static no.hvl.dat108.util.URLListe.LOGGINN_URL;
 import static no.hvl.dat108.util.LogginnUtil.*;
+import static no.hvl.dat108.util.FeilmeldingUtil.*;
 
 import java.io.IOException;
 
@@ -28,16 +29,18 @@ public class Logginn extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
+    public void init() throws ServletException {
+        
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Hent feilmelding
-        String feilmelding = (String)request.getSession().getAttribute("feilmelding");
+        String feilmelding = hentFeilmelding(request, FEIL_TYPE_LOGGINNSIDE);
 
         //Sende med feilmelding til jsp-sida:
-        if(feilmelding != null) {
-            request.setAttribute("feilmelding", feilmelding);
-            request.getSession().removeAttribute("feilmelding");
-        }
+        settFeilmeldingRequest(request, FEIL_TYPE_LOGGINNSIDE, feilmelding);
 
         //Går til JSP-sida
         request.getRequestDispatcher(LOGGINN_JSP).forward(request, response);
@@ -51,11 +54,13 @@ public class Logginn extends HttpServlet {
 
         if(!erGyldigLegitimasjon(request, deltakarEAO)) {
 
-            request.getSession().setAttribute("feilmelding", "Feil brukarnamn / passord"); //byttast ut med "konstante" feilmelding-strenger!?!
+            settFeilmeldingSesjon(request, FEIL_TYPE_LOGGINNSIDE, FEIL_BRUKARNAMN_PASSORD);
             response.sendRedirect(LOGGINN_URL);
 
         } else {
-            //...
+            //TODO må lagre i web.xml:
+            int sesjonTid = 60;
+            logginn(request, sesjonTid);
 
             response.sendRedirect(DELTAKARLISTE_URL);
         }

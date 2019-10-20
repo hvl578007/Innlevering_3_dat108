@@ -32,6 +32,17 @@ public class Deltakar {
         this.kjoenn = kjoenn;
     }
 
+    //midlertidig for å teste
+    public Deltakar(String fornamn, String etternamn, String mobilnummer, String kjoenn) {
+        this.fornamn = fornamn;
+        this.etternamn = etternamn;
+        this.mobilnummer = mobilnummer;
+        this.passordhash = 0;
+        this.passordsalt = 0;
+        this.kjoenn = kjoenn;
+    }
+
+
     public String getFornamn() {
         return fornamn;
     }

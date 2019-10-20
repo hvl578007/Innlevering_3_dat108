@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static no.hvl.dat108.util.URLListe.*;
+import static no.hvl.dat108.util.LogginnUtil.*;
 
 /**
  * Loggut
@@ -20,6 +21,10 @@ public class Loggut extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //skal kanskje ikkje ha post?
+        loggut(request);
+        
+        request.getRequestDispatcher(LOGGUT_JSP).forward(request, response);
     }
 
     @Override
