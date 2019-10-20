@@ -14,9 +14,8 @@
 	<h2>Logg inn</h2>
 	<p>Det er kun registrerte deltagere som får se deltagerlisten.</p>
 
-	<!-- feilmelding her: bytt ut med <c:out etc...>-->
 	<p>
-		<font color="red">Ugyldig brukernavn og/eller passord</font>
+		<font color="red"><c:out value="${feilLogginnSide}"/></font>
 	</p>
 
 	<form method="post" class="pure-form pure-form-aligned">
@@ -25,13 +24,13 @@
 				<label for="mobil">Mobil:</label> <input type="text" name="mobil" />
 			</div>
 			<div class="pure-control-group">
-				<label for="passord">Passord:</label> <input type="password"
-					name="passord" />
+				<label for="passord">Passord:</label> <input type="password" name="passord" />
 			</div>
 			<div class="pure-controls">
-				<button type="submit" class="pure-button pure-button-primary">Logg
-					inn</button>
+				<button type="submit" class="pure-button pure-button-primary">Logg inn</button>
 			</div>
+
+			<!-- må leggje inn javascript her -->
 		</fieldset>
 	</form>
 

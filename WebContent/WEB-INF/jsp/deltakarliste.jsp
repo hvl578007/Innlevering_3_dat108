@@ -19,20 +19,18 @@
 			<th align="left">Mobil</th>
 		</tr>
 		<tr bgcolor="#aaffaa">
-			<td align="center">&#9792;</td>
-			<td>Anne Annesen</td>
-			<td>445 54 455</td>
+			<td align="center">${deltakar.kjoenn == "mann" ? "&#9794;" : "&#9792;"}</td>
+			<td><c:out value="${deltakar.fornamn}"/>&nbsp;<c:out value="${deltakar.etternamn}"/></td>
+			<td><c:out value="${deltakar.mobilnummer}"/></td>
+			<!-- fikse på mobilnr slik at det blir med mellomrom??: 123 45 678 -->
 		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">&#9794;</td>
-			<td>Arne Arnesen</td>
-			<td>901 23 456</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">&#9794;</td>
-			<td>Per Viskeler</td>
-			<td>112 23 344</td>
-		</tr>
+		<c:forEach items="${liste}" var="d">
+			<tr bgcolor="#ffffff">
+				<td align="center">${d.kjoenn == "mann" ? "&#9794;" : "&#9792;"}</td>
+				<td><c:out value="${d.fornamn}"/>&nbsp;<c:out value="${d.etternamn}"/></td>
+				<td><c:out value="${d.mobilnummer}"/></td>
+			</tr>
+		</c:forEach>
 	</table>
 	<p>
 		<a href="loggut">Ferdig</a>

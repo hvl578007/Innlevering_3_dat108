@@ -14,10 +14,11 @@
 	<h2>Påmeldingsbekreftelse</h2>
 	<p>Påmeldingen er mottatt for</p>
 	<p>
-		&nbsp;&nbsp;&nbsp;Anne<br />
-		&nbsp;&nbsp;&nbsp;Annesen<br />
-		&nbsp;&nbsp;&nbsp;44554455<br /> &nbsp;&nbsp;&nbsp;kvinne
+		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.fornamn}"/><br />
+		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.etternamn}"/><br />
+		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.mobilnummer}"/><br />
+		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.kjoenn}"/><br />
 	</p>
-	<a href="deltagerliste">Gå til deltagerlisten</a>
+	<a href="deltakarliste">Gå til deltagerlisten</a>
 </body>
 </html>
