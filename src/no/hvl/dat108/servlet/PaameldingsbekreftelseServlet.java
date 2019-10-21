@@ -1,24 +1,33 @@
 ﻿package no.hvl.dat108.servlet;
 
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_LOGGAINN;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_TYPE_LOGGINNSIDE;
+import static no.hvl.dat108.util.FeilmeldingUtil.settFeilmeldingSesjon;
 import static no.hvl.dat108.util.LogginnUtil.erInnlogga;
-import static no.hvl.dat108.util.URLListe.*;
-import static no.hvl.dat108.util.FeilmeldingUtil.*;
+import static no.hvl.dat108.util.URLListe.LOGGINN_URL;
+import static no.hvl.dat108.util.URLListe.PAAMELDINGSBEKREFTELSE_JSP;
+import static no.hvl.dat108.util.URLListe.PAAMELDINGSBEKREFTELSE_URL;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat108.eao.DeltakarEAO;
 import no.hvl.dat108.entity.Deltakar;
 
 /**
  * Paameldingsbekreftelse
  */
 @WebServlet("/" + PAAMELDINGSBEKREFTELSE_URL)
-public class Paameldingsbekreftelse extends HttpServlet {
+public class PaameldingsbekreftelseServlet extends HttpServlet {
+
+    @EJB
+    private DeltakarEAO deltakarEAO;
 
     private static final long serialVersionUID = 1L;
 
@@ -30,10 +39,15 @@ public class Paameldingsbekreftelse extends HttpServlet {
             //til logginn eller til skjema?
             response.sendRedirect(LOGGINN_URL);
         } else {
+
+            //TODO litt usikker her...
             
-            Deltakar d = (Deltakar) request.getSession().getAttribute("deltakar");
-            request.getSession().removeAttribute("deltakar"); //?
-            request.getSession().setAttribute("mobilnr", d.getMobilnummer()); //???
+            //hente frå sesjonen... eller kan ein hente ned igjen frå databasen
+            //Deltakar d = (Deltakar) request.getSession().getAttribute("deltakar");
+
+            //TODO exception ved databasefeil?
+            Deltakar d = deltakarEAO.hentBrukar((String)request.getAttribute("mobilnr"));
+            //request.getSession().removeAttribute("deltakar");
             request.setAttribute("deltakar", d);
 
             request.getRequestDispatcher(PAAMELDINGSBEKREFTELSE_JSP).forward(request, response); 

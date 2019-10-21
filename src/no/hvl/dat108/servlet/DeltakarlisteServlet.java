@@ -26,7 +26,7 @@ import no.hvl.dat108.entity.Deltakar;
  * Deltakarliste
  */
 @WebServlet("/" + DELTAKARLISTE_URL)
-public class Deltakarliste extends HttpServlet {
+public class DeltakarlisteServlet extends HttpServlet {
 
     @EJB
     private DeltakarEAO deltakarEAO;
@@ -41,15 +41,9 @@ public class Deltakarliste extends HttpServlet {
             response.sendRedirect(LOGGINN_URL);
 
         } else {
-
-            String mobilnr = (String)request.getSession().getAttribute("mobilnr");
-
-            Deltakar d = deltakarEAO.hentBrukar(mobilnr);
-
+            
             //hentar lista av deltakarar
             List<Deltakar> liste = deltakarEAO.hentListe();
-
-            liste.remove(d);
 
             //leggje sorteringa i EAO?
             liste.sort( (d1, d2) -> {
@@ -61,7 +55,6 @@ public class Deltakarliste extends HttpServlet {
             });
 
             //set den i requesten for å hente på jsp-sida
-            request.setAttribute("deltakar", d);
             request.setAttribute("liste", liste);
 
             request.getRequestDispatcher(DELTAKAR_JSP).forward(request, response);

@@ -21,7 +21,7 @@ import no.hvl.dat108.eao.DeltakarEAO;
  * Logginn
  */
 @WebServlet("/" + LOGGINN_URL)
-public class Logginn extends HttpServlet {
+public class LogginnServlet extends HttpServlet {
 
     @EJB
     private DeltakarEAO deltakarEAO;
@@ -58,9 +58,10 @@ public class Logginn extends HttpServlet {
             response.sendRedirect(LOGGINN_URL);
 
         } else {
+            String mobilnr = (String) request.getAttribute("mobilnr");
             //TODO må lagre i web.xml:
             int sesjonTid = 60;
-            logginn(request, sesjonTid);
+            logginn(request, sesjonTid, mobilnr);
 
             response.sendRedirect(DELTAKARLISTE_URL);
         }
