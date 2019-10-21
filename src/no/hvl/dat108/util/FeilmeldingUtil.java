@@ -17,12 +17,15 @@ public class FeilmeldingUtil {
     public static final String FEIL_LOGGAINN = "Du må vere logga inn for å sjå denne sida";
 
     public static final String FEIL_TYPE_LOGGINNSIDE = "feilLogginnSide";
+
+    /*
     public static final String FEIL_TYPE_FN = "feilFornamn";
     public static final String FEIL_TYPE_EN = "feilEtternamn";
     public static final String FEIL_TYPE_MOB = "feilMobilnr";
     public static final String FEIL_TYPE_PASS = "feilPassord";
     public static final String FEIL_TYPE_PASSREP = "feilPassordRep";
     public static final String FEIL_TYPE_KJOENN = "feilKjoenn";
+    */
 
     /**
      * Hentar feilmelding og slettar den frå sesjonen (for at den ikkje blir liggande der)

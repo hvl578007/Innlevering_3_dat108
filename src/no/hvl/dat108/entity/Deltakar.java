@@ -15,15 +15,17 @@ public class Deltakar {
     private String etternamn;
 
     @Id
-    private String mobilnummer; //??? evt int?
+    private String mobilnummer;
 
-    private long passordhash; //??? anna format?
-    private long passordsalt; //??? anna format?
-    private String kjoenn;
+    private String passordhash;
+    private String passordsalt;
+    private String kjoenn; // evt char
 
-    public Deltakar() {}
+    public Deltakar() {
+    }
 
-    public Deltakar(String fornamn, String etternamn, String mobilnummer, long passordhash, long passordsalt, String kjoenn) {
+    public Deltakar(String fornamn, String etternamn, String mobilnummer, String passordhash, String passordsalt,
+            String kjoenn) {
         this.fornamn = fornamn;
         this.etternamn = etternamn;
         this.mobilnummer = mobilnummer;
@@ -32,16 +34,15 @@ public class Deltakar {
         this.kjoenn = kjoenn;
     }
 
-    //midlertidig for å teste
+    // midlertidig for å teste
     public Deltakar(String fornamn, String etternamn, String mobilnummer, String kjoenn) {
         this.fornamn = fornamn;
         this.etternamn = etternamn;
         this.mobilnummer = mobilnummer;
-        this.passordhash = 0;
-        this.passordsalt = 0;
+        this.passordhash = "";
+        this.passordsalt = "";
         this.kjoenn = kjoenn;
     }
-
 
     public String getFornamn() {
         return fornamn;
@@ -67,28 +68,42 @@ public class Deltakar {
         this.mobilnummer = mobilnummer;
     }
 
-    public long getPassordhash() {
+    public String getPassordhash() {
         return passordhash;
     }
 
-    public void setPassordhash(long passordhash) {
+    public void setPassordhash(String passordhash) {
         this.passordhash = passordhash;
     }
 
-    public long getPassordsalt() {
+    public String getPassordsalt() {
         return passordsalt;
     }
 
-    public void setPassordsalt(long passordsalt) {
+    public void setPassordsalt(String passordsalt) {
         this.passordsalt = passordsalt;
     }
 
-    public String getkjoenn() {
+    public String getKjoenn() {
         return kjoenn;
     }
 
-    public void setkjoenn(String kjoenn) {
+    public void setKjoenn(String kjoenn) {
         this.kjoenn = kjoenn;
     }
-    
+
+    public String getMobilnrFormatert() {
+        return String.format("%s %s %s", mobilnummer.substring(0, 3), mobilnummer.substring(3, 5),
+                mobilnummer.substring(5));
+    }
+
+    public String getKjoennFormatert() {
+        if (kjoenn != null && kjoenn.equals("mann")) {
+            return "&#9794;";
+        } else if (kjoenn != null && kjoenn.equals("kvinne")) {
+            return "&#9792;";
+        }
+        return null;
+    }
+
 }

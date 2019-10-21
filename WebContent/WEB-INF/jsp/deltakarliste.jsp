@@ -18,22 +18,19 @@
 			<th align="left">Navn</th>
 			<th align="left">Mobil</th>
 		</tr>
-		<tr bgcolor="#aaffaa">
-			<td align="center">${deltakar.kjoenn == "mann" ? "&#9794;" : "&#9792;"}</td>
-			<td><c:out value="${deltakar.fornamn}"/>&nbsp;<c:out value="${deltakar.etternamn}"/></td>
-			<td><c:out value="${deltakar.mobilnummer}"/></td>
-			<!-- fikse på mobilnr slik at det blir med mellomrom??: 123 45 678 -->
-		</tr>
 		<c:forEach items="${liste}" var="d">
-			<tr bgcolor="#ffffff">
-				<td align="center">${d.kjoenn == "mann" ? "&#9794;" : "&#9792;"}</td>
+			<tr bgcolor="${d.mobilnummer == mobilnr ? "#aaffaa" : "#ffffff"}">
+				<td align="center"><c:out value="${d.kjoennFormatert}"/></td>
 				<td><c:out value="${d.fornamn}"/>&nbsp;<c:out value="${d.etternamn}"/></td>
-				<td><c:out value="${d.mobilnummer}"/></td>
+				<td><c:out value="${d.mobilnrFormatert}"/></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<p>
-		<a href="loggut">Ferdig</a>
+		<form action="loggut" method="POST" class="pure-form pure-form-aligned">
+			<input type="submit" value="Ferdig" />
+		</form>
+		<!-- bruke form knapp som submitter til POST /loggut som så redirecter/forward til jsp?-->
 	</p>
 </body>
 </html>

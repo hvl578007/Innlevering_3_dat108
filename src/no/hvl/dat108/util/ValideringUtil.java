@@ -1,9 +1,13 @@
 ﻿package no.hvl.dat108.util;
 
-import static no.hvl.dat108.util.FeilmeldingUtil.*;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_ETTERNAMN;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_FORNAMN;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_KJOENN;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_MOBILNR;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_PASSORD;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_PASSORD_REP;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * ValideringUtil
@@ -36,36 +40,42 @@ public class ValideringUtil {
         return false;
     }
 
-    public static boolean erGyldigSkjemaInput(HttpServletRequest request, String fornamn, String etternamn, String mobilnr, String passord, String passordRepetert, String kjoenn) {
+    public static boolean erGyldigSkjemaInput(HttpServletRequest request, SkjemaInfo skjemaInfo) {
         boolean altGyldig = true;
 
-        if (!erGyldigFornamn(fornamn)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_FN, FEIL_FORNAMN);
+        if (!erGyldigFornamn(skjemaInfo.getFornamn())) {
+            skjemaInfo.setFornamn(null);
+            skjemaInfo.setFornamnFeil(FEIL_FORNAMN);
             altGyldig = false;
         }
         
-        if (!erGyldigEtternamn(etternamn)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_EN, FEIL_ETTERNAMN);
+        if (!erGyldigEtternamn(skjemaInfo.getEtternamn())) {
+            skjemaInfo.setEtternamn(null);
+            skjemaInfo.setEtternamnFeil(FEIL_ETTERNAMN);
             altGyldig = false;
         }
         
-        if (!erGyldigMobilnummer(mobilnr)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_MOB, FEIL_MOBILNR);
+        if (!erGyldigMobilnummer(skjemaInfo.getMobilnr())) {
+            skjemaInfo.setMobilnr(null);
+            skjemaInfo.setMobilFeil(FEIL_MOBILNR);
             altGyldig = false;
         }
         
-        if (!erGyldigPassord(passord)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_PASS, FEIL_PASSORD);
+        if (!erGyldigPassord(skjemaInfo.getPassord())) {
+            skjemaInfo.setPassord(null);
+            skjemaInfo.setPassordFeil(FEIL_PASSORD);
             altGyldig = false;
         }
         
-        if (!erGyldigPassordRepetert(passord, passordRepetert)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_PASSREP, FEIL_PASSORD_REP);
+        if (!erGyldigPassordRepetert(skjemaInfo.getPassord(), skjemaInfo.getPassordRep())) {
+            skjemaInfo.setPassordRep(null);
+            skjemaInfo.setPassordRepFeil(FEIL_PASSORD_REP);
             altGyldig = false;
         }
 
-        if (!erGyldigKjoenn(kjoenn)) {
-            settFeilmeldingSesjon(request, FEIL_TYPE_KJOENN, FEIL_KJOENN);
+        if (!erGyldigKjoenn(skjemaInfo.getKjoenn())) {
+            skjemaInfo.setKjoenn(null);
+            skjemaInfo.setKjoennFeil(FEIL_KJOENN);
             altGyldig = false;
         }
 

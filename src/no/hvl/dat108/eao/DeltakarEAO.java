@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.OrderBy;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -31,6 +30,11 @@ public class DeltakarEAO {
         TypedQuery<Deltakar> query = em.createQuery(
             "SELECT d FROM Deltakar d", Deltakar.class);
         return query.getResultList();
+    }
+
+    public boolean erEksisterandeDeltakar(String mobilnr) {
+        Deltakar d = hentBrukar(mobilnr);
+        return d != null;
     }
 
 }
