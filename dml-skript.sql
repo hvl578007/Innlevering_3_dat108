@@ -9,9 +9,9 @@ CREATE TABLE deltakar(
     fornamn VARCHAR(20),
     etternamn VARCHAR(20),
     mobilnummer VARCHAR(8),
-    passordhash INTEGER,
-    passordsalt INTEGER,
-    kjoenn VARCHAR,
+    passordhash VARCHAR,
+    passordsalt VARCHAR,
+    kjoenn VARCHAR(6),
     PRIMARY KEY (mobilnummer)
 
 );

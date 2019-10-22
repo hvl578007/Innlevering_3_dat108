@@ -29,8 +29,9 @@ public class ValideringUtil {
          * \p{IsAlphabetic} = det må vere ein boksav (inkluderar æøå, og sikkert andre då)
          * \p{Blank} = mellomrom (eller innrykk / tab)
          * [\p{IsAlphabetic}\p{Blank}-]+ = det må vere 1 eller meir av ein kombinasjon av bokstavar, bindestrek og mellomrom
+         * TODO burde kanskje sjekke om det kjem fleire mellomrom etter kvarandre, eller at det kjem fleire --- etter kvarandre...?
          */
-        String regex = "^\\p{javaUpperCase}[\\p{IsAlphabetic}\\p{Blank}-]+$";
+        String regex = "^\\p{javaUpperCase}[\\p{IsAlphabetic}\\p{Space}-]+$";
         
         if(fornamn != null && !fornamn.isEmpty() && fornamn.length() >= 2 && fornamn.length() <= 20) { 
 
@@ -88,6 +89,7 @@ public class ValideringUtil {
          * forklaring av regex:
          * \p{javaUpperCase} = første må vere ein stor bokstav, kunne nok også brukt IsUppercase, eller {Lu}
          * [\p{IsAlphabetic}-]+ = det må vere 1 eller meir av ein kombinasjon av bokstavar og bindestrek
+         * TODO burde kanskje sjekke om det kjem fleire --- etter kvarandre...?
          */
         String regex = "^\\p{javaUpperCase}[\\p{IsAlphabetic}-]+$";
 

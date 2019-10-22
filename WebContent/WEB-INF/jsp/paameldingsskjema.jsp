@@ -37,7 +37,7 @@
 			</div>
 			<div class="pure-control-group">
 				<label for="kjoenn">Kjønn:</label> <input type="radio" name="kjoenn" value="mann" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>mann
-				<input type="radio" name="kjoenn" value="kvinne" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>kvinne
+				<input type="radio" name="kjoenn" value="kvinne" ${skjemaInfo.kjoenn == "kvinne" ? "checked" : ""}/>kvinne
 				<font color="red">${skjemaInfo.kjoennFeil}</font>
 				<!-- beholde kva knapp ein har trykt på? -->
 			</div>
