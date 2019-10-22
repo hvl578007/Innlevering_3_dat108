@@ -63,7 +63,7 @@ public class PaameldingsskjemaServlet extends HttpServlet {
 
         // må sjekke om kvar ting var ok eller ikkje, og så setje evt feilmeldingar
 
-        if (erGyldigSkjemaInput(request, skjemaInfo) && !deltakarEAO.erEksisterandeDeltakar(mobilnr)) {
+        if (erGyldigSkjemaInput(skjemaInfo) && !deltakarEAO.erEksisterandeDeltakar(mobilnr)) {
 
             Hashing hashing = new Hashing(Hashing.SHA256);
 

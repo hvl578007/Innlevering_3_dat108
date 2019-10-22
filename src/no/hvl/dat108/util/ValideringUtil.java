@@ -19,7 +19,7 @@ public class ValideringUtil {
 
     //statiske? evt lage objekt og bruke dei som objekt-metodar
 
-    public static boolean erGyldigSkjemaInput(HttpServletRequest request, SkjemaInfo skjemaInfo) {
+    public static boolean erGyldigSkjemaInput(SkjemaInfo skjemaInfo) {
         boolean altGyldig = true;
 
         if (!erGyldigFornamn(skjemaInfo.getFornamn())) {
