@@ -3,6 +3,8 @@
 import static no.hvl.dat108.util.ValideringUtil.erGyldigMobilnummer;
 import static no.hvl.dat108.util.ValideringUtil.erGyldigPassord;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +24,7 @@ public class LogginnUtil {
         //sjekkar om dei er gyldige først, så slepp ein å hashe/hente ned info frå server uansett
         if(erGyldigMobilnummer(mobilnr) && erGyldigPassord(passord)) {
 
-            //TODO fiks dette
-            
-            //"sanitisere" mobilnr og passord !?!?
-            //...
+            //"escape" passord/mobilnr?
 
             //TODO exception ved databasefeil?
             
@@ -33,12 +32,19 @@ public class LogginnUtil {
             Deltakar d = deltakarEAO.hentBrukar(mobilnr);
 
             if (d != null) {
-                //long salt = d.getPassordsalt();
+                Hashing hashing = new Hashing(Hashing.SHA256);
 
-                //hash passord - eigen metode, kanskje i eigen util..
+                //henter ned salt:
+                String salt = d.getPassordsalt();
+                String passordHash = d.getPassordhash();
+                boolean erRettPassord = false;
+                try {
+                    erRettPassord = hashing.validatePasswordWithSalt(passord, salt, passordHash);
+                } catch (NoSuchAlgorithmException e) {
+                    return false; //?
+                }
 
-                //sjekk passord -> er likt -> return true
-                return true;
+                return erRettPassord;
             }
         }
 
@@ -61,6 +67,7 @@ public class LogginnUtil {
 
         //leggje til mobilnr i sesjonen?
         //kan enkelt identifisere brukaren i lista (grøn farge) og bekreftelse (?)
+        //TODO usikker på mobilnr i sesjon...
         sesjon.setAttribute("mobilnr", mobilnr);
         
         sesjon.setMaxInactiveInterval(sesjonTid);

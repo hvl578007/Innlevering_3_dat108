@@ -7,6 +7,7 @@ import static no.hvl.dat108.util.URLListe.PAAMELDINGSSKJEMA_URL;
 import static no.hvl.dat108.util.ValideringUtil.erGyldigSkjemaInput;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import no.hvl.dat108.eao.DeltakarEAO;
 import no.hvl.dat108.entity.Deltakar;
+import no.hvl.dat108.util.Hashing;
 import no.hvl.dat108.util.SkjemaInfo;
 
 /**
@@ -65,21 +67,25 @@ public class PaameldingsskjemaServlet extends HttpServlet {
             int sesjonTid = 60;
             logginn(request, sesjonTid, mobilnr);
 
-            // TODO generere salt, hashe passord og lagre i databasen
+            Hashing hashing = new Hashing(Hashing.SHA256);
 
             // "sanitisere" data her??? eller er det nok med god validering?
 
-            // må hashe passord før ein lagrar også
+            byte[] salt = hashing.getSalt();
 
-            Deltakar d = new Deltakar(fornamn, etternamn, mobilnr, kjoenn);
-            // Deltakar d = new Deltakar(fornamn, etternamn, mobilnr, passordhash,
-            // passordsalt, kjoenn);
+            try {
+                hashing.generateHashWithSalt(passord, salt);
+            } catch (NoSuchAlgorithmException e) {
+                //TODO: handle exception
+            }
+            
+            Deltakar d = new Deltakar(fornamn, etternamn, mobilnr, hashing.getPasswordHashinHex(), hashing.getPasswordSalt(), kjoenn);
 
             // alt godkjent -> lagre i databasen
 
             //TODO exception ved databasefeil?
             
-            // deltakarEAO.leggTilDeltakar(d);
+            deltakarEAO.leggTilDeltakar(d);
 
             // legg til deltakar i sesjonen? - kan enkelt hente ut og lise i bekreftelsen
             // då!
