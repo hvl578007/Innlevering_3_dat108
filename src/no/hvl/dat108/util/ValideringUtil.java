@@ -19,28 +19,6 @@ public class ValideringUtil {
 
     //statiske? evt lage objekt og bruke dei som objekt-metodar
 
-    public static boolean erGyldigFornamn(String fornamn) {
-        
-        //2-20 teikn, bokstavar, bindestrek og mellomrom, første må vere stor bokstav.
-        //bruke regex
-        /**
-         * forklaring av regex:
-         * \p{javaUpperCase} = første må vere ein stor bokstav, kunne nok også brukt IsUppercase
-         * \p{IsAlphabetic} = det må vere ein boksav (inkluderar æøå, og sikkert andre då)
-         * \p{Blank} = mellomrom (eller innrykk / tab)
-         * [\p{IsAlphabetic}\p{Blank}-]+ = det må vere 1 eller meir av ein kombinasjon av bokstavar, bindestrek og mellomrom
-         * TODO burde kanskje sjekke om det kjem fleire mellomrom etter kvarandre, eller at det kjem fleire --- etter kvarandre...?
-         */
-        String regex = "^\\p{javaUpperCase}[\\p{IsAlphabetic}\\p{Space}-]+$";
-        
-        if(fornamn != null && !fornamn.isEmpty() && fornamn.length() >= 2 && fornamn.length() <= 20) { 
-
-            return fornamn.matches(regex);
-
-        }
-        return false;
-    }
-
     public static boolean erGyldigSkjemaInput(HttpServletRequest request, SkjemaInfo skjemaInfo) {
         boolean altGyldig = true;
 
@@ -83,6 +61,28 @@ public class ValideringUtil {
         return altGyldig;
     }
 
+    public static boolean erGyldigFornamn(String fornamn) {
+        
+        //2-20 teikn, bokstavar, bindestrek og mellomrom, første må vere stor bokstav.
+        //bruke regex
+        /**
+         * forklaring av regex:
+         * \p{javaUpperCase} = første må vere ein stor bokstav, kunne nok også brukt IsUppercase
+         * \p{IsAlphabetic} = det må vere ein boksav (inkluderar æøå, og sikkert andre då)
+         * \p{Blank} = mellomrom (eller innrykk / tab)
+         * [\p{IsAlphabetic}\p{Blank}-]+ = det må vere 1 eller meir av ein kombinasjon av bokstavar, bindestrek og mellomrom
+         * TODO burde kanskje sjekke om det kjem fleire mellomrom etter kvarandre, eller at det kjem fleire --- etter kvarandre...?
+         */
+        String regex = "^\\p{javaUpperCase}[\\p{IsAlphabetic}\\p{Space}-]+$";
+        
+        if(fornamn != null && !fornamn.isEmpty() && fornamn.length() >= 2 && fornamn.length() <= 20) { 
+
+            return fornamn.matches(regex);
+
+        }
+        return false;
+    }
+
     public static boolean erGyldigEtternamn(String etternamn) {
 
         /**
@@ -105,7 +105,7 @@ public class ValideringUtil {
 
         if(mobilnr != null) {
             //knytte opp til database her?
-            return mobilnr.length() == 8;
+            return mobilnr.length() == 8 && mobilnr.matches("^\\d+$");
         }
         return false;
     }

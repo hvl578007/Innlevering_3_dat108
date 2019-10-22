@@ -46,8 +46,14 @@ public class TestValidering {
     }
 
     @Test
-    public void testMobilnummer() {
+    public void testMobilnummerGyldige() {
         assertTrue(erGyldigMobilnummer("98765432"));
+        assertTrue(erGyldigMobilnummer("55566555"));
+    }
+
+    @Test
+    public void testMobilnummerUgyldige() {
+        assertFalse(erGyldigMobilnummer("A1234567"));
         assertFalse(erGyldigMobilnummer("1234567890"));
     }
 
@@ -69,6 +75,7 @@ public class TestValidering {
 
     @Test
     public void testBrukarValidering() {
+        //TODO test validering!?
         //importere frå logginnutil her!?!
     }
     
