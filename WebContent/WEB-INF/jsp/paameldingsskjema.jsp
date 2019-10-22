@@ -15,24 +15,24 @@
 	<form method="post" class="pure-form pure-form-aligned">
 		<fieldset>
 			<div class="pure-control-group">
-				<label for="fornamn">Fornamn:</label> <input type="text" name="fornamn" value="${skjemaInfo.fornamn}" /> 
+				<label for="fornamn">Fornamn:</label> <input type="text" name="fornamn" value="${skjemaInfo.fornamn}" id="fornamn"/> 
 					<font color="red">${skjemaInfo.fornamnFeil}</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="etternamn">Etternamn:</label> <input type="text" name="etternamn" value="${skjemaInfo.etternamn}" /> 
+				<label for="etternamn">Etternamn:</label> <input type="text" name="etternamn" value="${skjemaInfo.etternamn}" id="etternamn"/> 
 					<font color="red">${skjemaInfo.etternamnFeil}</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="mobilnr">Mobilnr (8 siffer):</label> <input type="text" name="mobilnr" value="${skjemaInfo.mobilnr}" /> 
+				<label for="mobilnr">Mobilnr (8 siffer):</label> <input type="text" name="mobilnr" value="${skjemaInfo.mobilnr}" id="mobilnr"/> 
 					<font color="red">${skjemaInfo.mobilFeil}</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="passord">Passord:</label> <input type="password" name="passord" value="${skjemaInfo.passord}" /> 
+				<label for="passord">Passord:</label> <input type="password" name="passord" value="${skjemaInfo.passord}" id="passord"/> 
 					<font color="red">${skjemaInfo.passordFeil}</font>
 			</div>
 			<div class="pure-control-group">
 				<label for="passordRepetert">Passord repetert:</label>
-				<input type="password" name="passordRepetert" value="${skjemaInfo.passordRep}" /> 
+				<input type="password" name="passordRepetert" value="${skjemaInfo.passordRep}" id="passordRep"/> 
 					<font color="red">${skjemaInfo.passordRepFeil}</font>
 			</div>
 			<div class="pure-control-group">
@@ -46,5 +46,6 @@
 			</div>
 		</fieldset>
 	</form>
+	<script src="validering.js" defer></script>
 </body>
 </html>
