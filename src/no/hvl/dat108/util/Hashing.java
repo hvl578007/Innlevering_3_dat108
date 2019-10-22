@@ -178,7 +178,7 @@ public class Hashing {
 
 			e.printStackTrace();
 		}
-
+		this.passwordSalt = salt;
 	    return salt;
 	}
 	

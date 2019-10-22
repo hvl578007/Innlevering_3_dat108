@@ -1,8 +1,8 @@
-﻿CREATE SCHEMA dat108_oblig3
+﻿/* CREATE SCHEMA dat108_oblig3; */
 
-SET search_path = dat108_oblig3
+SET search_path = dat108_oblig3;
 
-DROP TABLE IF EXISTS deltakar
+DROP TABLE IF EXISTS deltakar;
 
 CREATE TABLE deltakar(
 

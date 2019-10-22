@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h2>Logg inn</h2>
-	<p>Det er kun registrerte deltagere som fÃ¥r se deltagerlisten.</p>
+	<p>Det er kun registrerte deltagere som får se deltagerlisten.</p>
 
 	<p>
 		<font color="red"><c:out value="${feilLogginnSide}"/></font>
@@ -30,7 +30,7 @@
 				<button type="submit" class="pure-button pure-button-primary">Logg inn</button>
 			</div>
 
-			<!-- mÃ¥ leggje inn javascript her -->
+			<!-- må leggje inn javascript her -->
 		</fieldset>
 	</form>
 

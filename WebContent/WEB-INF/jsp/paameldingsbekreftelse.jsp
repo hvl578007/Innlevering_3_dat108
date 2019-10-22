@@ -8,17 +8,17 @@
 <!-- Fra https://purecss.io/ -->
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-<title>PÃ¥meldingsbekreftelse</title>
+<title>Påmeldingsbekreftelse</title>
 </head>
 <body>
-	<h2>PÃ¥meldingsbekreftelse</h2>
-	<p>PÃ¥meldingen er mottatt for</p>
+	<h2>Påmeldingsbekreftelse</h2>
+	<p>Påmeldingen er mottatt for</p>
 	<p>
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.fornamn}"/><br />
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.etternamn}"/><br />
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.mobilnummer}"/><br />
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.kjoenn}"/><br />
 	</p>
-	<a href="deltakarliste">GÃ¥ til deltagerlisten</a>
+	<a href="deltakarliste">Gå til deltagerlisten</a>
 </body>
 </html>

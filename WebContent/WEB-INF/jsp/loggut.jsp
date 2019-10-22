@@ -12,9 +12,9 @@
 </head>
 <body>
 	<h1>Ferdig</h1>
-	<p>Du er nÃ¥ logget ut.</p>
+	<p>Du er nå logget ut.</p>
 	<p>
-		Du kan se deltagerlisten igjen ved Ã¥ gÃ¥ <a href="logginn">hit</a>.
+		Du kan se deltagerlisten igjen ved å gå <a href="logginn">hit</a>.
 	</p>
 </body>
 </html>

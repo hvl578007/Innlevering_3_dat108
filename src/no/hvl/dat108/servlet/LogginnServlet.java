@@ -1,10 +1,15 @@
 ﻿package no.hvl.dat108.servlet;
 
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_BRUKARNAMN_PASSORD;
+import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_TYPE_LOGGINNSIDE;
+import static no.hvl.dat108.util.FeilmeldingUtil.hentFeilmelding;
+import static no.hvl.dat108.util.FeilmeldingUtil.settFeilmeldingRequest;
+import static no.hvl.dat108.util.FeilmeldingUtil.settFeilmeldingSesjon;
+import static no.hvl.dat108.util.LogginnUtil.erGyldigLegitimasjon;
+import static no.hvl.dat108.util.LogginnUtil.logginn;
 import static no.hvl.dat108.util.URLListe.DELTAKARLISTE_URL;
 import static no.hvl.dat108.util.URLListe.LOGGINN_JSP;
 import static no.hvl.dat108.util.URLListe.LOGGINN_URL;
-import static no.hvl.dat108.util.LogginnUtil.*;
-import static no.hvl.dat108.util.FeilmeldingUtil.*;
 
 import java.io.IOException;
 
@@ -58,7 +63,7 @@ public class LogginnServlet extends HttpServlet {
             response.sendRedirect(LOGGINN_URL);
 
         } else {
-            String mobilnr = (String) request.getAttribute("mobilnr");
+            String mobilnr = request.getParameter("mobilnr");
             //TODO må lagre i web.xml:
             int sesjonTid = 60;
             logginn(request, sesjonTid, mobilnr);

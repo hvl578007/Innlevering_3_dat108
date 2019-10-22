@@ -46,8 +46,12 @@ public class PaameldingsbekreftelseServlet extends HttpServlet {
             //Deltakar d = (Deltakar) request.getSession().getAttribute("deltakar");
 
             //TODO exception ved databasefeil?
-            Deltakar d = deltakarEAO.hentBrukar((String)request.getAttribute("mobilnr"));
+
+            String mobilnr = (String)request.getSession().getAttribute("mobilnr");
+            Deltakar d = deltakarEAO.hentBrukar(mobilnr);
+
             //request.getSession().removeAttribute("deltakar");
+            
             request.setAttribute("deltakar", d);
 
             request.getRequestDispatcher(PAAMELDINGSBEKREFTELSE_JSP).forward(request, response); 

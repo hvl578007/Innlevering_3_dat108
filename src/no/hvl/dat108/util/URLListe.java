@@ -17,5 +17,5 @@ public class URLListe {
     public static final String PAAMELDINGSBEKREFTELSE_JSP = "WEB-INF/jsp/paameldingsbekreftelse.jsp";
     public static final String PAAMELDINGSSKJEMA_JSP = "WEB-INF/jsp/paameldingsskjema.jsp";
     
-    public static final String UTLOGGA_HTML = "utlogga";
+    public static final String UTLOGGA_HTML = "utlogga.html";
 }

@@ -50,22 +50,20 @@ public class PaameldingsskjemaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fornamn = (String) request.getAttribute("fornamn");
-        String etternamn = (String) request.getAttribute("etternamn");
-        String mobilnr = (String) request.getAttribute("mobilnr");
-        String passord = (String) request.getAttribute("passord");
-        String passordRepetert = (String) request.getAttribute("passordRepetert");
-        String kjoenn = (String) request.getAttribute("kjoenn");
+        request.getSession().removeAttribute("skjemaInfo");
+
+        String fornamn = request.getParameter("fornamn");
+        String etternamn = request.getParameter("etternamn");
+        String mobilnr = request.getParameter("mobilnr");
+        String passord = request.getParameter("passord");
+        String passordRepetert = request.getParameter("passordRepetert");
+        String kjoenn = request.getParameter("kjoenn");
 
         SkjemaInfo skjemaInfo = new SkjemaInfo(fornamn, etternamn, mobilnr, passord, passordRepetert, kjoenn);
 
         // må sjekke om kvar ting var ok eller ikkje, og så setje evt feilmeldingar
 
         if (erGyldigSkjemaInput(request, skjemaInfo) && !deltakarEAO.erEksisterandeDeltakar(mobilnr)) {
-
-            //TODO web.xml
-            int sesjonTid = 60;
-            logginn(request, sesjonTid, mobilnr);
 
             Hashing hashing = new Hashing(Hashing.SHA256);
 
@@ -91,6 +89,10 @@ public class PaameldingsskjemaServlet extends HttpServlet {
             // då!
             //request.getSession().setAttribute("deltakar", d);
             //evt hentar ut i bekreftelse frå databasen... idk?
+
+            //TODO web.xml
+            int sesjonTid = 60;
+            logginn(request, sesjonTid, mobilnr);
 
             response.sendRedirect(PAAMELDINGSBEKREFTELSE_URL);
 
