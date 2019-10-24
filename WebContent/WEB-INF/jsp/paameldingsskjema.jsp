@@ -36,8 +36,8 @@
 					<font color="red">${skjemaInfo.passordRepFeil}</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="kjoenn">Kj�nn:</label> <input type="radio" name="kjoenn" value="mann" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>mann
-				<input type="radio" name="kjoenn" value="kvinne" ${skjemaInfo.kjoenn == "kvinne" ? "checked" : ""}/>kvinne
+				<label for="kjoenn">Kj�nn:</label> <input type="radio" name="kjoenn" value="mann" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>&nbsp;mann
+				<input type="radio" name="kjoenn" value="kvinne" ${skjemaInfo.kjoenn == "kvinne" ? "checked" : ""}/>&nbsp;kvinne
 				<font color="red">${skjemaInfo.kjoennFeil}</font>
 				<!-- beholde kva knapp ein har trykt p�? -->
 			</div>
