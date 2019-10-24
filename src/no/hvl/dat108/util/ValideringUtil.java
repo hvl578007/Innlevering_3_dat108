@@ -9,6 +9,8 @@ import static no.hvl.dat108.util.FeilmeldingUtil.FEIL_PASSORD_REP;
 
 import javax.servlet.http.HttpServletRequest;
 
+import no.hvl.dat108.eao.DeltakarEAO;
+
 /**
  * ValideringUtil
  * 
@@ -19,7 +21,7 @@ public class ValideringUtil {
 
     //statiske? evt lage objekt og bruke dei som objekt-metodar
 
-    public static boolean erGyldigSkjemaInput(SkjemaInfo skjemaInfo) {
+    public static boolean erGyldigSkjemaInput(SkjemaInfo skjemaInfo, DeltakarEAO deltakarEAO) {
         boolean altGyldig = true;
 
         if (!erGyldigFornamn(skjemaInfo.getFornamn())) {
@@ -55,6 +57,13 @@ public class ValideringUtil {
         if (!erGyldigKjoenn(skjemaInfo.getKjoenn())) {
             skjemaInfo.setKjoenn(null);
             skjemaInfo.setKjoennFeil(FEIL_KJOENN);
+            altGyldig = false;
+        }
+
+        //gjer slik at ein får feil om mobilnr finst allereie
+        if(altGyldig && deltakarEAO.erEksisterandeDeltakar(skjemaInfo.getMobilnr())) {
+            skjemaInfo.setMobilnr(null);
+            skjemaInfo.setMobilFeil(FEIL_MOBILNR);
             altGyldig = false;
         }
 
