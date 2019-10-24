@@ -46,6 +46,6 @@
 			</div>
 		</fieldset>
 	</form>
-	<script src="validering.js" defer></script>
+	<script src="DeltakarValidering.js" defer></script>
 </body>
 </html>
