@@ -14,9 +14,12 @@ passordInput.addEventListener("input", sjekkPassord);
 passordRepInput.addEventListener("input", sjekkPassordRep);
 
 meldPaaButton.addEventListener("click", event => {
+
     //skal ein validere "på nytt?" eller? berre dialogboks
+    //!!!!!
     //må evt lage "2 funksjonar" per sjekk, ein med boolsk retur-verdi som seier om det er korrekt -> kan bruke her
     //og ein som endrar på fargen
+
     if(!window.confirm("Send info til tener?")) {
         // blir ikkje sendt
         event.preventDefault();

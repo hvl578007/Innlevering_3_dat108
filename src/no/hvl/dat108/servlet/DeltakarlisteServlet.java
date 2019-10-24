@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat108.eao.DeltakarEAO;
 import no.hvl.dat108.entity.Deltakar;
+import no.hvl.dat108.util.FeilmeldingUtil;
 
 
 /**
@@ -43,16 +44,24 @@ public class DeltakarlisteServlet extends HttpServlet {
         } else {
             
             //hentar lista av deltakarar
-            List<Deltakar> liste = deltakarEAO.hentListe();
+            List<Deltakar> liste = null;
+            try {
+                liste = deltakarEAO.hentListe();
+            } catch (Exception e) {
+                settFeilmeldingSesjon(request, FeilmeldingUtil.FEIL_TYPE_DATABASE, FeilmeldingUtil.FEIL_DATABASE);
+            }
 
             //leggje sorteringa i EAO?
-            liste.sort( (d1, d2) -> {
-                if(d1.getFornamn().equals(d2.getFornamn())) {
-                    return d1.getEtternamn().compareTo(d2.getEtternamn());
-                } else {
-                    return d1.getFornamn().compareTo(d2.getFornamn());
-                }
-            });
+            if (liste != null) {
+                liste.sort( (d1, d2) -> {
+                    if(d1.getFornamn().equals(d2.getFornamn())) {
+                        return d1.getEtternamn().compareTo(d2.getEtternamn());
+                    } else {
+                        return d1.getFornamn().compareTo(d2.getFornamn());
+                    }
+                });
+            }
+            
 
             //set den i requesten for å hente på jsp-sida
             request.setAttribute("liste", liste);

@@ -17,6 +17,8 @@ public class FeilmeldingUtil {
     public static final String FEIL_LOGGAINN = "Du må vere logga inn for å sjå denne sida";
 
     public static final String FEIL_TYPE_LOGGINNSIDE = "feilLogginnSide";
+    public static final String FEIL_TYPE_DATABASE = "feilDatabase";
+    public static final String FEIL_DATABASE = "Databasefeil - prøv igjen seinare/kontakt admin";
 
     /*
     public static final String FEIL_TYPE_FN = "feilFornamn";

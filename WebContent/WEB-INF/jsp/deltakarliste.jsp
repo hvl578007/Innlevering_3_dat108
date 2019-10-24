@@ -8,13 +8,14 @@
 <!-- Fra https://purecss.io/ -->
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-<title>Deltagerliste</title>
+<title>Deltakerliste</title>
 </head>
 <body>
-	<h2>Deltagerliste</h2>
+	<h2>Deltakerliste</h2>
+	<font color="red">${feilDatabase}</font>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
-			<th>Kjï¿½nn</th>
+			<th>Kjønn</th>
 			<th align="left">Navn</th>
 			<th align="left">Mobil</th>
 		</tr>

@@ -14,6 +14,7 @@
 	<h2>Påmeldingsbekreftelse</h2>
 	<p>Påmeldingen er mottatt for</p>
 	<p>
+		<font color="red">${feilDatabase}</font>
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.fornamn}"/><br />
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.etternamn}"/><br />
 		&nbsp;&nbsp;&nbsp;<c:out value="${deltakar.mobilnummer}"/><br />

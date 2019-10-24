@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import no.hvl.dat108.eao.DeltakarEAO;
 import no.hvl.dat108.entity.Deltakar;
+import no.hvl.dat108.util.FeilmeldingUtil;
 import no.hvl.dat108.util.Hashing;
 import no.hvl.dat108.util.SkjemaInfo;
 
@@ -30,8 +31,19 @@ public class PaameldingsskjemaServlet extends HttpServlet {
 
     @EJB
     private DeltakarEAO deltakarEAO;
+    
+    private int sesjonsTid;
 
     private static final long serialVersionUID = 1L;
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            sesjonsTid = Integer.parseInt(getServletContext().getInitParameter("sesjonstid"));
+        } catch (NumberFormatException e) {
+            sesjonsTid = 60;
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,26 +85,25 @@ public class PaameldingsskjemaServlet extends HttpServlet {
 
             try {
                 hashing.generateHashWithSalt(passord, salt);
-            } catch (NoSuchAlgorithmException e) {
-                //TODO: handle exception
-            }
+            } catch (NoSuchAlgorithmException e) {}
             
             Deltakar d = new Deltakar(fornamn, etternamn, mobilnr, hashing.getPasswordHashinHex(), hashing.getPasswordSalt(), kjoenn);
 
             // alt godkjent -> lagre i databasen
 
-            //TODO exception ved databasefeil?
-            
-            deltakarEAO.leggTilDeltakar(d);
+            try {
+                deltakarEAO.leggTilDeltakar(d);
+            } catch (Exception e) {
+                FeilmeldingUtil.settFeilmeldingSesjon(request, FeilmeldingUtil.FEIL_TYPE_DATABASE, FeilmeldingUtil.FEIL_DATABASE);
+                response.sendRedirect(PAAMELDINGSSKJEMA_URL);
+            }
 
             // legg til deltakar i sesjonen? - kan enkelt hente ut og lise i bekreftelsen
             // då!
             //request.getSession().setAttribute("deltakar", d);
             //evt hentar ut i bekreftelse frå databasen... idk?
 
-            //TODO web.xml
-            int sesjonTid = 60;
-            logginn(request, sesjonTid, mobilnr);
+            logginn(request, sesjonsTid, mobilnr);
 
             response.sendRedirect(PAAMELDINGSBEKREFTELSE_URL);
 

@@ -12,11 +12,11 @@
 </head>
 <body>
 	<h1>Ferdig</h1>
-	<p>Du er nï¿½ logget ut.</p>
+	<p>Du er nå logget ut.</p>
 	<p>
-		Du kan se deltagerlisten igjen ved ï¿½ gï¿½ <a href="logginn">hit</a>.
+		Du kan se deltagerlisten igjen ved å gå <a href="logginn">hit</a>.
 	</p>
 
-	<!-- blir ikkje brukt... lar den vere dÃ¥ den kunne evt ha blitt brukt -->
+	<!-- blir ikkje brukt... lar den vere då den kunne evt ha blitt brukt -->
 </body>
 </html>

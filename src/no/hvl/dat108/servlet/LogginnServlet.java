@@ -31,11 +31,17 @@ public class LogginnServlet extends HttpServlet {
     @EJB
     private DeltakarEAO deltakarEAO;
 
+    private int sesjonsTid;
+
     private static final long serialVersionUID = 1L;
 
     @Override
     public void init() throws ServletException {
-        
+        try {
+            sesjonsTid = Integer.parseInt(getServletContext().getInitParameter("sesjonstid"));
+        } catch (NumberFormatException e) {
+            sesjonsTid = 60;
+        }
     }
 
     @Override
@@ -64,9 +70,8 @@ public class LogginnServlet extends HttpServlet {
 
         } else {
             String mobilnr = request.getParameter("mobilnr");
-            //TODO må lagre i web.xml:
-            int sesjonTid = 60;
-            logginn(request, sesjonTid, mobilnr);
+
+            logginn(request, sesjonsTid, mobilnr);
 
             response.sendRedirect(DELTAKARLISTE_URL);
         }

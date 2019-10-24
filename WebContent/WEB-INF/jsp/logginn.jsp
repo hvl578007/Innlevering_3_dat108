@@ -30,7 +30,7 @@
 				<button type="submit" class="pure-button pure-button-primary">Logg inn</button>
 			</div>
 
-			<!-- må leggje inn javascript her -->
+			<!-- m? leggje inn javascript her -->
 		</fieldset>
 	</form>
 

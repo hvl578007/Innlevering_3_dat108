@@ -8,10 +8,11 @@
 <!-- Fra https://purecss.io/ -->
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-<title>Pï¿½melding</title>
+<title>Påmelding</title>
 </head>
 <body>
-	<h2>Pï¿½melding</h2>
+	<h2>Påmelding</h2>
+	<font color="red">${feilDatabase}</font>
 	<form method="post" class="pure-form pure-form-aligned">
 		<fieldset>
 			<div class="pure-control-group">
@@ -36,13 +37,13 @@
 					<font color="red">${skjemaInfo.passordRepFeil}</font>
 			</div>
 			<div class="pure-control-group">
-				<label for="kjoenn">Kjï¿½nn:</label> <input type="radio" name="kjoenn" value="mann" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>&nbsp;mann
+				<label for="kjoenn">Kjønn:</label> <input type="radio" name="kjoenn" value="mann" ${skjemaInfo.kjoenn == "mann" ? "checked" : ""}/>&nbsp;mann
 				<input type="radio" name="kjoenn" value="kvinne" ${skjemaInfo.kjoenn == "kvinne" ? "checked" : ""}/>&nbsp;kvinne
 				<font color="red">${skjemaInfo.kjoennFeil}</font>
-				<!-- beholde kva knapp ein har trykt pï¿½? -->
+				<!-- beholde kva knapp ein har trykt p?? -->
 			</div>
 			<div class="pure-controls">
-				<button type="submit" class="pure-button pure-button-primary">Meld meg pï¿½</button>
+				<button type="submit" class="pure-button pure-button-primary" id="meldPaa">Meld meg på</button>
 			</div>
 		</fieldset>
 	</form>

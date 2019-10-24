@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat108.eao.DeltakarEAO;
 import no.hvl.dat108.entity.Deltakar;
+import no.hvl.dat108.util.FeilmeldingUtil;
 
 /**
  * Paameldingsbekreftelse
@@ -36,21 +37,22 @@ public class PaameldingsbekreftelseServlet extends HttpServlet {
 
         if (!erInnlogga(request)) {
             settFeilmeldingSesjon(request, FEIL_TYPE_LOGGINNSIDE, FEIL_LOGGAINN);
-            //til logginn eller til skjema?
             response.sendRedirect(LOGGINN_URL);
         } else {
 
-            //TODO litt usikker her...
+            //litt usikker her...
             
-            //hente frå sesjonen... eller kan ein hente ned igjen frå databasen
-            //Deltakar d = (Deltakar) request.getSession().getAttribute("deltakar");
+            //hente frå sesjonen... eller kan ein hente ned igjen frå databasen <-- dette
 
-            //TODO exception ved databasefeil?
-
+            //hentar frå databasen
             String mobilnr = (String)request.getSession().getAttribute("mobilnr");
-            Deltakar d = deltakarEAO.hentBrukar(mobilnr);
 
-            //request.getSession().removeAttribute("deltakar");
+            Deltakar d = null;
+            try {
+                d = deltakarEAO.hentBrukar(mobilnr);
+            } catch (Exception e) {
+                settFeilmeldingSesjon(request, FeilmeldingUtil.FEIL_TYPE_DATABASE, FeilmeldingUtil.FEIL_DATABASE);
+            }
             
             request.setAttribute("deltakar", d);
 

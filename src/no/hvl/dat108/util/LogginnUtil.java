@@ -25,11 +25,15 @@ public class LogginnUtil {
         if(erGyldigMobilnummer(mobilnr) && erGyldigPassord(passord)) {
 
             //"escape" passord/mobilnr?
-
-            //TODO exception ved databasefeil?
             
             //hent ned brukarobjekt
-            Deltakar d = deltakarEAO.hentBrukar(mobilnr);
+            Deltakar d = null;
+            try {
+                d = deltakarEAO.hentBrukar(mobilnr);
+            } catch (Exception e) {
+                FeilmeldingUtil.settFeilmeldingSesjon(request, FeilmeldingUtil.FEIL_TYPE_LOGGINNSIDE, FeilmeldingUtil.FEIL_DATABASE);
+                return false;
+            }
 
             if (d != null) {
                 Hashing hashing = new Hashing(Hashing.SHA256);
@@ -41,7 +45,7 @@ public class LogginnUtil {
                 try {
                     erRettPassord = hashing.validatePasswordWithSalt(passord, salt, passordHash);
                 } catch (NoSuchAlgorithmException e) {
-                    return false; //?
+                    return false; //? feilmelding?
                 }
 
                 return erRettPassord;
@@ -67,7 +71,6 @@ public class LogginnUtil {
 
         //leggje til mobilnr i sesjonen?
         //kan enkelt identifisere brukaren i lista (grøn farge) og bekreftelse (?)
-        //TODO usikker på mobilnr i sesjon...
         sesjon.setAttribute("mobilnr", mobilnr);
         
         sesjon.setMaxInactiveInterval(sesjonTid);

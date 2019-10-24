@@ -28,6 +28,7 @@ public class TestValidering {
         assertFalse(erGyldigFornamn("H"));
         assertFalse(erGyldigFornamn("Litt For Langt Fornamn Dette"));
         assertFalse(erGyldigFornamn("Ikkje lov - 111"));
+        assertFalse(erGyldigFornamn("Grønås  "));
     }
 
     @Test
@@ -43,6 +44,7 @@ public class TestValidering {
         assertFalse(erGyldigEtternamn("Svendsen Grønås"));
         assertFalse(erGyldigEtternamn("VeldigLangtEtterNamnDetteAltså"));
         assertFalse(erGyldigEtternamn("IkkjeLovMed9Og-"));
+        assertFalse(erGyldigEtternamn("Grønås--"));
     }
 
     @Test
