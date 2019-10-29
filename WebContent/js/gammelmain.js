@@ -1,5 +1,6 @@
-﻿"use strict";
+﻿"use strict;"
 
+//den gamle main... alt i eit:
 let fornamnInput = document.getElementById("fornamn");
 let etternamnInput = document.getElementById("etternamn");
 let mobilnrInput = document.getElementById("mobilnr");
