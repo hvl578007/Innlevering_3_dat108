@@ -24,5 +24,5 @@ dv.meldPaaButton.addEventListener("click", event => {
 });
 
 dv.passordInput.addEventListener("mouseover", event => {
-    dv.passordInput.title = ("Passordstyrke:\n<8      teikn = ugyldig (raudt)\n8-9     teikn = svakt (mørkeraudt)\n10-13 teikn = middels (gult)\n14+    teikn = sterkt (grønt)");
+    dv.passordInput.title = ("Passordstyrke:\n<8      teikn = ugyldig (raudt)\n8-9     teikn = svakt (mørkeraudt)\n10-13 teikn = middels (gult)\n14+    teikn = sterkt (grønt)\nMå ha (minst) ein stor og liten bokstav og eit tal!");
 });
